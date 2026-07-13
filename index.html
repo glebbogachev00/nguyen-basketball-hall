@@ -20,11 +20,8 @@
 :root {
   --bg:        #0B1520;
   --nav-bg:    #080F1A;
-  --side-bg:   #0D1A27;
-  --panel-bg:  #0D1A27;
   --card-bg:   #121E2D;
   --border:    #1A2D42;
-  --border-2:  #243D59;
   --text:      #D8E8F5;
   --text-2:    #6E8BAA;
   --text-3:    #3D5570;
@@ -34,7 +31,6 @@
   --green:     #10B981;
   --blue:      #3B82F6;
   --red:       #EF4444;
-  --purple:    #8B5CF6;
 }
 
 html, body { height: 100%; overflow: hidden; }
@@ -43,396 +39,274 @@ body {
   background: var(--bg); color: var(--text);
   display: flex; flex-direction: column;
 }
-.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0 }
-a.skip { position:absolute;top:-40px;left:0;background:var(--orange);color:#fff;padding:8px 16px;z-index:200;font-weight:700;text-decoration:none }
-a.skip:focus { top:0 }
-:focus-visible { outline:2px solid var(--orange);outline-offset:2px }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 
 /* ─── HEADER ─── */
 header {
-  background: var(--nav-bg); height: 56px; padding: 0 18px;
-  display: flex; align-items: center; gap: 20px;
+  background: var(--nav-bg);
+  height: 54px; padding: 0 20px;
+  display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid var(--border);
-  flex-shrink: 0; position: relative; z-index: 30;
+  flex-shrink: 0; z-index: 30;
 }
-.logo { display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0 }
-.logo-ball { width:34px;height:34px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center }
+.logo { display:flex;align-items:center;gap:9px;text-decoration:none }
+.logo-ball { width:30px;height:30px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center }
 .logo-text .t1 { font-size:13px;font-weight:800;color:#fff;letter-spacing:.04em;display:block;line-height:1.1 }
-.logo-text .t2 { font-size:8.5px;font-weight:700;color:var(--orange);letter-spacing:.18em;text-transform:uppercase;display:block }
-.ico-btn { width:33px;height:33px;border:none;background:rgba(255,255,255,.06);color:var(--text-2);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;position:relative }
-.ico-btn:hover { background:rgba(255,255,255,.1);color:#fff }
+.logo-text .t2 { font-size:8px;font-weight:700;color:var(--orange);letter-spacing:.18em;text-transform:uppercase;display:block }
 
-/* ─── BODY WRAP ─── */
-.body-wrap { display:flex;flex:1;min-height:0;overflow:hidden }
-
-/* ─── SIDEBAR ─── */
-aside.sidebar { width:220px;flex-shrink:0;background:var(--side-bg);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto }
-.sb-inner { padding:14px 8px;display:flex;flex-direction:column;gap:18px;flex:1 }
-.sec-lbl { font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--text-3);padding:0 8px;margin-bottom:4px }
-.room-list { list-style:none;display:flex;flex-direction:column;gap:1px }
-.r-btn { width:100%;background:transparent;border:none;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:9px;transition:background .15s;text-align:left }
-.r-btn:hover { background:rgba(255,255,255,.05) }
-.r-btn[aria-pressed="true"] { background:rgba(249,115,22,.09) }
-.r-icon { width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0 }
-.r-info { flex:1;min-width:0 }
-.r-name { font-size:12px;font-weight:700;display:block }
-.r-desc { font-size:10px;color:var(--text-3);display:block;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis }
-.r-chev { color:var(--text-3);flex-shrink:0 }
-
-/* ─── MAIN ─── */
-main { flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden }
-
-.gallery {
-  flex-shrink:0; position:relative;
-  background:linear-gradient(180deg,#060E18 0%,#091524 55%,#0B1A2C 100%);
-  display:flex;flex-direction:column;align-items:center;
-  padding:18px 20px 0; border-bottom:1px solid var(--border); overflow:visible;
+/* Language toggle */
+.lang-toggle {
+  display: flex;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
 }
-.gallery::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 110%,rgba(249,115,22,.06) 0%,transparent 70%);pointer-events:none }
+.lang-opt {
+  padding: 5px 13px;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .05em;
+  color: var(--text-2);
+  border: none; background: transparent; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.lang-opt.active { background: var(--orange); color: #fff; }
 
-.portals-wrap { position:relative;display:flex;justify-content:center;align-items:flex-end;width:100% }
-.portals-row { display:flex;align-items:flex-end;gap:20px;position:relative;z-index:1 }
+/* ─── LANDING ─── */
+#landing {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px; padding: 32px 24px; text-align: center;
+  background: radial-gradient(ellipse 55% 45% at 50% 62%, rgba(249,115,22,.07) 0%, transparent 68%);
+}
+.landing-ball {
+  animation: float 3.4s ease-in-out infinite;
+  filter: drop-shadow(0 16px 30px rgba(0,0,0,.7));
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)} }
 
-.portal { display:flex;flex-direction:column;cursor:pointer;position:relative;transition:transform .2s ease }
-.portal:hover { transform:translateY(-5px) }
-.portal:focus-visible { outline:2px solid var(--orange);outline-offset:3px;border-radius:60px 60px 10px 10px }
+.landing-title {
+  font-size: clamp(28px, 5.5vw, 56px);
+  font-weight: 900; color: #fff;
+  letter-spacing: .04em; line-height: 1;
+  text-transform: uppercase;
+}
+.landing-title span { color: var(--orange); }
+.landing-sub {
+  font-size: clamp(13px, 1.7vw, 15px);
+  color: var(--text-2); max-width: 390px; line-height: 1.7;
+}
+.enter-hall-btn {
+  background: var(--orange); color: #fff; border: none;
+  padding: 13px 32px; font-size: 14.5px; font-weight: 700; border-radius: 10px;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 22px rgba(249,115,22,.35);
+  transition: background .15s, transform .15s, box-shadow .15s;
+}
+.enter-hall-btn:hover {
+  background: var(--orange-dk); transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(249,115,22,.45);
+}
 
-.portal-arch { border-radius:60px 60px 10px 10px;border:1px solid var(--border);overflow:hidden;position:relative;transition:border-color .2s }
-.portal.sel .portal-arch { border-color:rgba(249,115,22,.55) }
-.portal.sel .portal-arch::after { content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent) }
+/* ─── HALL ─── */
+#hall {
+  flex: 1;
+  display: none; flex-direction: column; align-items: center; justify-content: center;
+  gap: 26px; padding: 32px 24px;
+}
+.hall-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--text-3);
+}
+.hall-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; width: 100%; max-width: 840px;
+}
+.hall-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 26px 22px;
+  cursor: pointer; text-align: left;
+  display: flex; flex-direction: column; gap: 12px;
+  position: relative; overflow: hidden;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.hall-card::before {
+  content: ''; position: absolute; inset: 0; border-radius: 18px;
+  opacity: 0; transition: opacity .2s; pointer-events: none;
+}
+.hall-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.55); }
+.hall-card:hover::before { opacity: 1; }
 
-.portal-inner { width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:10px;position:relative }
-.p-badge { position:absolute;top:14px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;z-index:2 }
-.p-badge-icon { display:flex;align-items:center;justify-content:center }
-.p-badge-name { font-size:9px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;text-align:center;line-height:1.2;white-space:nowrap }
+.hall-card[data-room="legends"]        { border-color: rgba(245,158,11,.2); }
+.hall-card[data-room="legends"]:hover  { border-color: rgba(245,158,11,.6); }
+.hall-card[data-room="legends"]::before{ background: radial-gradient(ellipse at top,rgba(245,158,11,.07) 0%,transparent 65%); }
 
-.p-sm  .portal-arch { width:130px;height:205px } .p-sm  .portal-inner { height:205px }
-.p-md  .portal-arch { width:148px;height:232px } .p-md  .portal-inner { height:232px }
-.p-lg  .portal-arch { width:182px;height:278px } .p-lg  .portal-inner { height:278px }
-.p-eq  .portal-arch { width:230px;height:290px } .p-eq  .portal-inner { height:290px }
+.hall-card[data-room="shoe"]           { border-color: rgba(16,185,129,.2); }
+.hall-card[data-room="shoe"]:hover     { border-color: rgba(16,185,129,.6); }
+.hall-card[data-room="shoe"]::before   { background: radial-gradient(ellipse at top,rgba(16,185,129,.07) 0%,transparent 65%); }
 
-.portal-foot { padding:7px 0 5px;display:flex;justify-content:center }
-.pdots { display:flex;gap:3px }
-.pd  { width:4px;height:4px;border-radius:50%;background:var(--text-3) }
-.pd.on { background:var(--orange) }
+.hall-card[data-room="courts"]         { border-color: rgba(59,130,246,.2); }
+.hall-card[data-room="courts"]:hover   { border-color: rgba(59,130,246,.6); }
+.hall-card[data-room="courts"]::before { background: radial-gradient(ellipse at top,rgba(59,130,246,.07) 0%,transparent 65%); }
 
-.bball-float { position:absolute;bottom:44px;left:50%;transform:translateX(-50%);z-index:10;pointer-events:none;filter:drop-shadow(0 12px 24px rgba(0,0,0,.6)) }
+.hc-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.hc-title { font-size: 17px; font-weight: 800; display: block; line-height: 1.2; }
+.hc-desc  { font-size: 12.5px; color: var(--text-2); line-height: 1.6; display: block; }
+.hc-arrow {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border);
+  opacity: .45; transition: opacity .2s;
+}
+.hall-card:hover .hc-arrow { opacity: 1; }
 
-.gallery-hints { display:flex;gap:20px;padding:10px 0 11px;position:relative;z-index:1 }
-.hint { display:flex;align-items:center;gap:6px;font-size:10.5px;color:var(--text-3);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;padding:4px 12px }
+.back-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text-2);
+  padding: 8px 20px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.back-btn:hover { border-color: rgba(255,255,255,.3); color: #fff; background: rgba(255,255,255,.04); }
 
-/* ─── EXPLORE MORE ─── */
+/* ─── SHARED MODAL BASE ─── */
+.pm-spinner {
+  width: 22px; height: 22px;
+  border: 2px solid var(--border); border-top-color: var(--gold);
+  border-radius: 50%; animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ─── RIGHT PANEL ─── */
-aside.rp { width:258px;flex-shrink:0;background:var(--panel-bg);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto }
-.rp-top { display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border);flex-shrink:0 }
-.rp-top-label { font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3) }
-.rp-body { padding:14px;display:flex;flex-direction:column;gap:14px;flex:1 }
-.rp-name { font-size:22px;font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:.02em }
-.rp-desc { font-size:11.5px;color:var(--text-2);line-height:1.6 }
-.rp-div { height:1px;background:var(--border) }
-.rp-stat { display:flex;align-items:center;justify-content:space-between;padding:7px 9px;background:rgba(255,255,255,.04);border-radius:7px }
-.rp-stat + .rp-stat { margin-top:6px }
-.rp-stat-l { display:flex;align-items:center;gap:8px;color:var(--text-2) }
-.rp-stat-v { font-size:12.5px;font-weight:700;color:#fff }
-.ff { background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.17);border-radius:9px;padding:11px 12px;display:flex;gap:9px;align-items:flex-start }
-.ff-head { font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:3px }
-.ff-text { font-size:11px;color:var(--text-2);line-height:1.55 }
-.enter-btn { background:var(--orange);color:#fff;border:none;width:100%;padding:12px;font-size:13.5px;font-weight:700;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;margin-top:auto }
-.enter-btn:hover { background:var(--orange-dk) }
-
+.pm-close {
+  width: 32px; height: 32px; flex-shrink: 0;
+  border: 1px solid var(--border); background: rgba(255,255,255,.06);
+  color: var(--text-2); border-radius: 8px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, color .15s;
+}
+.pm-close:hover { background: rgba(255,255,255,.12); color: #fff; }
 
 /* ─── PLAYERS MODAL ─── */
 .pm-overlay {
   position: fixed; inset: 0; z-index: 100;
   display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s ease;
+  opacity: 0; pointer-events: none; transition: opacity .25s ease;
 }
 .pm-overlay.open { opacity: 1; pointer-events: all; }
-.pm-backdrop {
-  position: absolute; inset: 0;
-  background: rgba(4, 8, 16, 0.88);
-  backdrop-filter: blur(14px);
-}
+.pm-backdrop { position: absolute; inset: 0; background: rgba(4,8,16,.88); backdrop-filter: blur(14px); }
 .pm-panel {
   position: relative; z-index: 1;
-  width: min(92vw, 1080px);
-  background: #0D1A27;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px 24px 28px;
-  transform: translateY(12px);
-  transition: transform .25s ease;
+  width: min(92vw, 1080px); background: #0D1A27;
+  border: 1px solid var(--border); border-radius: 20px;
+  padding: 24px 24px 28px; max-height: 92vh; overflow-y: auto;
+  transform: translateY(12px); transition: transform .25s ease;
 }
 .pm-overlay.open .pm-panel { transform: translateY(0); }
-
-.pm-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: 22px;
-}
-.pm-title-main { font-size: 20px; font-weight: 900; color: var(--gold); letter-spacing: .03em; display: block; }
-.pm-title-sub  { font-size: 11px; color: var(--text-2); display: block; margin-top: 2px; }
-
-.pm-close {
-  width: 32px; height: 32px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.06);
-  color: var(--text-2);
-  border-radius: 8px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .15s, color .15s;
-}
-.pm-close:hover { background: rgba(255,255,255,.12); color: #fff; }
-.pm-close:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-
-.pm-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-
+.pm-header { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px }
+.pm-title-main { font-size:20px;font-weight:900;color:var(--gold);letter-spacing:.03em;display:block }
+.pm-title-sub  { font-size:11px;color:var(--text-2);display:block;margin-top:2px }
+.pm-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px }
 .pm-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; cursor: pointer;
   transition: border-color .2s, transform .2s, box-shadow .2s;
 }
-.pm-card:hover {
-  border-color: rgba(245,158,11,.45);
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(0,0,0,.4);
-}
-.pm-card:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
-
-.pm-canvas-wrap {
-  position: relative;
-  height: 240px;
-  background: var(--card-bg);
-}
-.pm-canvas {
-  width: 100%; height: 100%;
-  display: block;
-}
+.pm-card:hover { border-color:rgba(245,158,11,.45);transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.4) }
+.pm-canvas-wrap { position:relative;height:240px;background:var(--card-bg) }
+.pm-canvas { width:100%;height:100%;display:block }
 .pm-loading {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; font-size: 11px; color: var(--text-3);
-  background: var(--card-bg);
-  transition: opacity .3s;
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  font-size:11px;color:var(--text-3);background:var(--card-bg);transition:opacity .3s
 }
-.pm-loading.done { opacity: 0; pointer-events: none; }
-.pm-spinner {
-  width: 22px; height: 22px;
-  border: 2px solid var(--border);
-  border-top-color: var(--gold);
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.pm-info {
-  padding: 12px 14px;
-  border-top: 1px solid var(--border);
-}
-.pm-player-name {
-  font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 5px;
-}
-.pm-player-meta {
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
-.pm-badge {
-  font-size: 10px; font-weight: 600;
-  padding: 2px 8px; border-radius: 20px;
-  background: rgba(255,255,255,.06);
-  color: var(--text-2);
-}
-.pm-badge.highlight {
-  color: var(--gold);
-  background: rgba(245,158,11,.1);
-}
-.pm-bio {
-  font-size: 11px;
-  color: var(--text-2);
-  line-height: 1.6;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
-}
-.pm-teams-title {
-  font-size: 9px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--text-3); margin: 10px 0 6px;
-}
-.pm-team-row {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: 8px; padding: 5px 0;
-  border-bottom: 1px solid rgba(26,45,66,.7);
-}
-.pm-team-row:last-child { border-bottom: none; }
-.pm-team-name  { font-size: 11px; font-weight: 600; color: var(--text); }
-.pm-team-years { font-size: 10px; color: var(--text-3); white-space: nowrap; }
-.pm-team-note  { font-size: 10px; color: var(--text-2); margin-top: 1px; }
+.pm-loading.done { opacity:0;pointer-events:none }
+.pm-info { padding:12px 14px;border-top:1px solid var(--border) }
+.pm-player-name { font-size:13.5px;font-weight:700;color:#fff;margin-bottom:5px }
+.pm-player-meta { display:flex;flex-wrap:wrap;gap:6px }
+.pm-badge { font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,.06);color:var(--text-2) }
+.pm-badge.highlight { color:var(--gold);background:rgba(245,158,11,.1) }
+.pm-bio { font-size:11px;color:var(--text-2);line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid var(--border) }
+.pm-teams-title { font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin:10px 0 6px }
+.pm-team-row { display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid rgba(26,45,66,.7) }
+.pm-team-row:last-child { border-bottom:none }
+.pm-team-name  { font-size:11px;font-weight:600;color:var(--text) }
+.pm-team-years { font-size:10px;color:var(--text-3);white-space:nowrap }
+.pm-team-note  { font-size:10px;color:var(--text-2);margin-top:1px }
 
 /* ─── SHOE MODAL ─── */
 .sm-overlay {
-  position: fixed; inset: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s ease;
+  position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s ease
 }
-.sm-overlay.open { opacity: 1; pointer-events: all; }
-.sm-backdrop {
-  position: absolute; inset: 0;
-  background: rgba(4, 8, 16, 0.88);
-  backdrop-filter: blur(14px);
-}
+.sm-overlay.open { opacity:1;pointer-events:all }
+.sm-backdrop { position:absolute;inset:0;background:rgba(4,8,16,.88);backdrop-filter:blur(14px) }
 .sm-panel {
-  position: relative; z-index: 1;
-  width: min(94vw, 1020px);
-  background: #0D1A27;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px 24px 28px;
-  transform: translateY(12px);
-  transition: transform .25s ease;
-  max-height: 90vh;
-  overflow-y: auto;
+  position:relative;z-index:1;width:min(94vw,1020px);background:#0D1A27;
+  border:1px solid var(--border);border-radius:20px;padding:24px 24px 28px;
+  transform:translateY(12px);transition:transform .25s ease;max-height:90vh;overflow-y:auto
 }
-.sm-overlay.open .sm-panel { transform: translateY(0); }
-.sm-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: 20px;
-}
-.sm-title-main { font-size: 20px; font-weight: 900; color: var(--green); letter-spacing: .03em; display: block; }
-.sm-title-sub  { font-size: 11px; color: var(--text-2); display: block; margin-top: 2px; }
-.sm-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
+.sm-overlay.open .sm-panel { transform:translateY(0) }
+.sm-header { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px }
+.sm-title-main { font-size:20px;font-weight:900;color:var(--green);letter-spacing:.03em;display:block }
+.sm-title-sub  { font-size:11px;color:var(--text-2);display:block;margin-top:2px }
+.sm-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px }
 .sm-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  transition:border-color .2s,transform .2s,box-shadow .2s
 }
-.sm-card:hover {
-  border-color: rgba(16,185,129,.4);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,.4);
-}
-.sm-visual {
-  height: 160px;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.sm-shoe-svg { transition: transform .35s ease; }
-.sm-card:hover .sm-shoe-svg { transform: scale(1.06) rotate(-3deg); }
-.sm-info { padding: 14px; }
-.sm-shoe-name { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 2px; }
-.sm-shoe-brand { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
-.sm-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-.sm-tag {
-  font-size: 10px; font-weight: 600;
-  padding: 2px 8px; border-radius: 20px;
-  background: rgba(255,255,255,.06); color: var(--text-2);
-}
-.sm-tag.hl { background: rgba(16,185,129,.1); color: var(--green); }
-.sm-desc { font-size: 11px; color: var(--text-2); line-height: 1.6; padding-top: 8px; border-top: 1px solid var(--border); }
-.sm-worn-by { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-3); margin: 8px 0 4px; }
-.sm-worn-list { font-size: 11px; color: var(--text); font-weight: 600; }
+.sm-card:hover { border-color:rgba(16,185,129,.4);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.4) }
+.sm-info { padding:14px }
+.sm-shoe-name { font-size:15px;font-weight:800;color:#fff;margin-bottom:2px }
+.sm-shoe-brand { font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px }
+.sm-tags { display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px }
+.sm-tag { font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,.06);color:var(--text-2) }
+.sm-tag.hl { background:rgba(16,185,129,.1);color:var(--green) }
+.sm-desc { font-size:11px;color:var(--text-2);line-height:1.6;padding-top:8px;border-top:1px solid var(--border) }
+.sm-worn-by { font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin:8px 0 4px }
+.sm-worn-list { font-size:11px;color:var(--text);font-weight:600 }
 
 /* ─── COURTS MODAL ─── */
 .cm-overlay {
-  position: fixed; inset: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s ease;
+  position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .25s ease
 }
-.cm-overlay.open { opacity: 1; pointer-events: all; }
-.cm-backdrop {
-  position: absolute; inset: 0;
-  background: rgba(4, 8, 16, 0.88);
-  backdrop-filter: blur(14px);
-}
+.cm-overlay.open { opacity:1;pointer-events:all }
+.cm-backdrop { position:absolute;inset:0;background:rgba(4,8,16,.88);backdrop-filter:blur(14px) }
 .cm-panel {
-  position: relative; z-index: 1;
-  width: min(92vw, 900px);
-  background: #0D1A27;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px 24px 28px;
-  transform: translateY(12px);
-  transition: transform .25s ease;
+  position:relative;z-index:1;width:min(92vw,900px);background:#0D1A27;
+  border:1px solid var(--border);border-radius:20px;padding:24px 24px 28px;
+  transform:translateY(12px);transition:transform .25s ease;max-height:90vh;overflow-y:auto
 }
-.cm-overlay.open .cm-panel { transform: translateY(0); }
-.cm-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: 20px;
-}
-.cm-title-main { font-size: 20px; font-weight: 900; color: var(--blue); letter-spacing: .03em; display: block; }
-.cm-title-sub  { font-size: 11px; color: var(--text-2); display: block; margin-top: 2px; }
-.cm-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
+.cm-overlay.open .cm-panel { transform:translateY(0) }
+.cm-header { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px }
+.cm-title-main { font-size:20px;font-weight:900;color:var(--blue);letter-spacing:.03em;display:block }
+.cm-title-sub  { font-size:11px;color:var(--text-2);display:block;margin-top:2px }
+.cm-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:14px }
 .cm-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  background:var(--card-bg);border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s
 }
-.cm-card:hover {
-  border-color: rgba(59,130,246,.5);
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,.4);
-}
-.cm-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.cm-img-wrap { position: relative; height: 260px; overflow: hidden; }
-.cm-img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .4s ease;
-}
-.cm-card:hover .cm-img { transform: scale(1.04); }
-.cm-img-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(0deg, rgba(8,15,26,.85) 0%, transparent 55%);
-  pointer-events: none;
-}
-.cm-info { padding: 14px 16px; }
-.cm-court-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.cm-court-meta { display: flex; flex-wrap: wrap; gap: 6px; }
-.cm-tag {
-  font-size: 10px; font-weight: 600;
-  padding: 2px 8px; border-radius: 20px;
-  background: rgba(255,255,255,.06); color: var(--text-2);
-}
-.cm-tag.hl { color: var(--blue); background: rgba(59,130,246,.1); }
-.cm-desc {
-  font-size: 11px; color: var(--text-2);
-  line-height: 1.6; margin-top: 8px;
-  padding-top: 8px; border-top: 1px solid var(--border);
-}
+.cm-card:hover { border-color:rgba(59,130,246,.5);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.4) }
+.cm-img-wrap { position:relative;height:220px;overflow:hidden }
+.cm-img { width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease }
+.cm-card:hover .cm-img { transform:scale(1.04) }
+.cm-img-overlay { position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,15,26,.85) 0%,transparent 55%);pointer-events:none }
+.cm-info { padding:14px 16px }
+.cm-court-name { font-size:15px;font-weight:700;color:#fff;margin-bottom:6px }
+.cm-court-meta { display:flex;flex-wrap:wrap;gap:6px }
+.cm-tag { font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,.06);color:var(--text-2) }
+.cm-tag.hl { color:var(--blue);background:rgba(59,130,246,.1) }
+.cm-desc { font-size:11px;color:var(--text-2);line-height:1.6;margin-top:8px;padding-top:8px;border-top:1px solid var(--border) }
 </style>
 </head>
 <body>
 
-<a href="#main" class="skip">Skip to main content</a>
-
-<!-- ═══ HEADER ═══ -->
+<!-- HEADER -->
 <header>
   <a href="#" class="logo" aria-label="Basketball Universe home">
     <div class="logo-ball" aria-hidden="true">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="10" fill="white"/>
         <path d="M2 12h20M12 2v20" stroke="#EA580C" stroke-width="1.8"/>
         <path d="M5.5 5.5c2.3 2.3 2.3 10.7 0 13M18.5 5.5c-2.3 2.3-2.3 10.7 0 13" stroke="#EA580C" stroke-width="1.4"/>
@@ -440,168 +314,113 @@ aside.rp { width:258px;flex-shrink:0;background:var(--panel-bg);border-left:1px 
     </div>
     <div class="logo-text"><span class="t1">BASKETBALL</span><span class="t2">UNIVERSE</span></div>
   </a>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button class="lang-opt active" data-lang="en">EN</button>
+    <button class="lang-opt" data-lang="vn">VN</button>
+  </div>
 </header>
 
-<div class="body-wrap">
+<!-- LANDING -->
+<section id="landing">
+  <svg class="landing-ball" width="108" height="108" viewBox="0 0 100 100" aria-hidden="true">
+    <defs>
+      <radialGradient id="bb1" cx="37%" cy="33%" r="66%">
+        <stop offset="0%"   stop-color="#FB923C"/>
+        <stop offset="50%"  stop-color="#F97316"/>
+        <stop offset="100%" stop-color="#7C2D12"/>
+      </radialGradient>
+      <radialGradient id="bb2" cx="30%" cy="25%" r="40%">
+        <stop offset="0%"   stop-color="rgba(255,255,255,.22)"/>
+        <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+      </radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="46" fill="url(#bb1)"/>
+    <path d="M4 50 Q28 34 50 50 Q72 66 96 50" stroke="#431407" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M4 50 Q28 66 50 50 Q72 34 96 50" stroke="#431407" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <line x1="50" y1="4" x2="50" y2="96" stroke="#431407" stroke-width="2"/>
+    <path d="M22 20 Q50 32 78 20" stroke="#431407" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M22 80 Q50 68 78 80" stroke="#431407" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="46" fill="url(#bb2)"/>
+  </svg>
 
-<!-- ═══ SIDEBAR ═══ -->
-<aside class="sidebar" aria-label="Room navigation">
-  <div class="sb-inner">
-    <nav>
-      <div class="sec-lbl" id="rooms-lbl">Explore Rooms</div>
-      <ul class="room-list" role="list" aria-labelledby="rooms-lbl">
-        <li><button class="r-btn" aria-pressed="true" data-room="legends">
-          <div class="r-icon" style="background:rgba(245,158,11,.1)" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
-          <div class="r-info"><span class="r-name" style="color:#F59E0B">Legends Chamber</span><span class="r-desc">Legendary players &amp; careers</span></div>
-          <svg class="r-chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </button></li>
-        <li><button class="r-btn" aria-pressed="false" data-room="shoe">
-          <div class="r-icon" style="background:rgba(16,185,129,.1)" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round"><path d="M2 17c0 0 4-8 10-8s8 5 12 4"/><path d="M2 17h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/></svg></div>
-          <div class="r-info"><span class="r-name" style="color:#10B981">Shoe Lab</span><span class="r-desc">Iconic shoes &amp; technology</span></div>
-          <svg class="r-chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </button></li>
-        <li><button class="r-btn" aria-pressed="false" data-room="courts">
-          <div class="r-icon" style="background:rgba(59,130,246,.1)" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <div class="r-info"><span class="r-name" style="color:#3B82F6">Famous Courts</span><span class="r-desc">World's greatest courts</span></div>
-          <svg class="r-chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-        </button></li>
-      </ul>
-    </nav>
-  </div>
-</aside>
+  <h1 class="landing-title">BASKETBALL<br><span>UNIVERSE</span></h1>
+  <p class="landing-sub" data-i18n="landing_sub"></p>
+  <button class="enter-hall-btn" id="enter-hall-btn">
+    <span data-i18n="enter_hall"></span>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+</section>
 
-<!-- ═══ MAIN ═══ -->
-<main id="main">
-  <section class="gallery" aria-label="Room gallery">
-    <div class="portals-wrap">
-      <div class="bball-float" aria-hidden="true">
-        <svg width="100" height="100" viewBox="0 0 100 100">
-          <defs>
-            <radialGradient id="bball" cx="37%" cy="33%" r="66%">
-              <stop offset="0%"   stop-color="#FB923C"/>
-              <stop offset="50%"  stop-color="#F97316"/>
-              <stop offset="100%" stop-color="#7C2D12"/>
-            </radialGradient>
-            <radialGradient id="bball-shine" cx="30%" cy="25%" r="40%">
-              <stop offset="0%"   stop-color="rgba(255,255,255,.22)"/>
-              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-            </radialGradient>
-          </defs>
-          <circle cx="50" cy="50" r="46" fill="url(#bball)"/>
-          <path d="M4 50 Q28 34 50 50 Q72 66 96 50" stroke="#431407" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <path d="M4 50 Q28 66 50 50 Q72 34 96 50" stroke="#431407" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <line x1="50" y1="4" x2="50" y2="96" stroke="#431407" stroke-width="2"/>
-          <path d="M22 20 Q50 32 78 20" stroke="#431407" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <path d="M22 80 Q50 68 78 80" stroke="#431407" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <circle cx="50" cy="50" r="46" fill="url(#bball-shine)"/>
-        </svg>
+<!-- HALL -->
+<section id="hall">
+  <p class="hall-label" data-i18n="choose_room"></p>
+  <div class="hall-grid">
+
+    <button class="hall-card" data-room="legends">
+      <div class="hc-icon" style="background:rgba(245,158,11,.12)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
-
-      <div class="portals-row" role="list">
-
-        <!-- Legends Chamber — clicking opens player modal -->
-        <article class="portal p-eq sel" tabindex="0" role="listitem" data-room="legends" aria-label="Legends Chamber — click to meet the players" aria-pressed="true">
-          <div class="portal-arch" style="background:linear-gradient(175deg,#120A00 0%,#1F1200 40%,#160E00 100%)">
-            <div class="portal-inner">
-              <div class="p-badge">
-                <div class="p-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                <span class="p-badge-name" style="color:#F59E0B">LEGENDS<br>CHAMBER</span>
-              </div>
-              <svg width="100" height="148" viewBox="0 0 68 110" fill="none" style="opacity:.8">
-                <circle cx="34" cy="22" r="13" fill="#F59E0B" opacity=".7"/>
-                <path d="M8 90 Q8 56 34 52 Q60 56 60 90 L64 110 L4 110Z" fill="#D97706" opacity=".6"/>
-                <circle cx="54" cy="72" r="10" fill="#F97316" opacity=".5"/>
-                <path d="M44 72 Q54 66 64 72" stroke="#7C2D12" stroke-width="1" fill="none" opacity=".6"/>
-                <path d="M44 72 Q54 78 64 72" stroke="#7C2D12" stroke-width="1" fill="none" opacity=".6"/>
-              </svg>
-            </div>
-          </div>
-          <div class="portal-foot"><div class="pdots"><div class="pd on"></div><div class="pd"></div><div class="pd"></div></div></div>
-        </article>
-
-        <article class="portal p-eq" tabindex="0" role="listitem" data-room="shoe" aria-label="Shoe Lab" aria-pressed="false">
-          <div class="portal-arch" style="background:linear-gradient(175deg,#001810 0%,#002818 40%,#001F14 100%)">
-            <div class="portal-inner">
-              <div class="p-badge">
-                <div class="p-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round"><path d="M2 17c0 0 4-8 10-8s8 5 12 4"/><path d="M2 17h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/></svg></div>
-                <span class="p-badge-name" style="color:#10B981">SHOE<br>LAB</span>
-              </div>
-              <svg width="160" height="108" viewBox="0 0 96 60" style="opacity:.85;margin-bottom:4px">
-                <path d="M4 44C4 44 10 22 22 22C33 22 38 33 56 30C68 28 72 33 72 33L72 46C72 50 68 52 64 52L12 52C8 52 4 49 4 44Z" fill="#10B981" opacity=".65"/>
-                <path d="M22 22L22 40M33 23L33 40M44 26L44 40" stroke="rgba(255,255,255,.4)" stroke-width="1.8" stroke-linecap="round"/>
-                <rect x="4" y="47" width="68" height="5" rx="2.5" fill="#059669" opacity=".7"/>
-              </svg>
-            </div>
-          </div>
-          <div class="portal-foot"><div class="pdots"><div class="pd on"></div><div class="pd on"></div><div class="pd"></div></div></div>
-        </article>
-
-        <article class="portal p-eq" tabindex="0" role="listitem" data-room="courts" aria-label="Famous Courts" aria-pressed="false" style="z-index:5">
-          <div class="portal-arch" style="background:linear-gradient(175deg,#000814 0%,#001028 40%,#000F24 100%)">
-            <div class="portal-inner">
-              <div class="p-badge">
-                <div class="p-badge-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/><circle cx="12" cy="12" r="3"/></svg></div>
-                <span class="p-badge-name" style="color:#3B82F6">FAMOUS<br>COURTS</span>
-              </div>
-              <svg width="200" height="150" viewBox="0 0 148 100" style="opacity:.45;position:absolute;bottom:0">
-                <rect x="2" y="2" width="144" height="96" rx="3" fill="none" stroke="#3B82F6" stroke-width="1.2"/>
-                <line x1="74" y1="2" x2="74" y2="98" stroke="#3B82F6" stroke-width="1"/>
-                <circle cx="74" cy="50" r="18" fill="none" stroke="#3B82F6" stroke-width="1"/>
-                <circle cx="74" cy="50" r="2" fill="#3B82F6"/>
-                <path d="M2 24Q22 24 22 50Q22 76 2 76" fill="none" stroke="#3B82F6" stroke-width="1"/>
-                <path d="M146 24Q126 24 126 50Q126 76 146 76" fill="none" stroke="#3B82F6" stroke-width="1"/>
-              </svg>
-            </div>
-          </div>
-          <div class="portal-foot"><div class="pdots"><div class="pd on"></div><div class="pd"></div><div class="pd"></div></div></div>
-        </article>
-
-
+      <span class="hc-title" style="color:#F59E0B" data-i18n="legends_name"></span>
+      <span class="hc-desc" data-i18n="legends_desc"></span>
+      <div class="hc-arrow" style="color:#F59E0B">
+        <span data-i18n="open_room"></span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
       </div>
-    </div>
-    <div class="gallery-hints">
-      <div class="hint"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="6" y="2" width="12" height="18" rx="6"/><path d="M12 6v4"/></svg>Drag to Rotate</div>
-      <div class="hint"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg>Scroll to Zoom</div>
-    </div>
-  </section>
+    </button>
 
-</main>
+    <button class="hall-card" data-room="shoe">
+      <div class="hc-icon" style="background:rgba(16,185,129,.12)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round"><path d="M2 17c0 0 4-8 10-8s8 5 12 4"/><path d="M2 17h20v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2z"/></svg>
+      </div>
+      <span class="hc-title" style="color:#10B981" data-i18n="shoe_name"></span>
+      <span class="hc-desc" data-i18n="shoe_desc"></span>
+      <div class="hc-arrow" style="color:#10B981">
+        <span data-i18n="open_room"></span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+    </button>
 
-<!-- ═══ RIGHT PANEL ═══ -->
-<aside class="rp" aria-label="Room details">
-  <div class="rp-top">
-    <span class="rp-top-label">Room Details</span>
-    <button class="ico-btn" style="width:24px;height:24px;border-radius:6px" aria-label="Close panel"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <button class="hall-card" data-room="courts">
+      <div class="hc-icon" style="background:rgba(59,130,246,.12)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/><circle cx="12" cy="12" r="3"/></svg>
+      </div>
+      <span class="hc-title" style="color:#3B82F6" data-i18n="courts_name"></span>
+      <span class="hc-desc" data-i18n="courts_desc"></span>
+      <div class="hc-arrow" style="color:#3B82F6">
+        <span data-i18n="open_room"></span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+    </button>
+
   </div>
-  <div class="rp-body">
-    <div id="rp-name" class="rp-name" style="color:#F59E0B">LEGENDS<br>CHAMBER</div>
-    <p id="rp-desc" class="rp-desc">Step into the hall of fame. Discover the stories, stats, and iconic moments of basketball's greatest legends.</p>
-    <div class="rp-div"></div>
-    <div id="rp-stats">
-      <div class="rp-stat"><div class="rp-stat-l"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span style="font-size:12px;color:var(--text-2)">Players</span></div><span class="rp-stat-v">25</span></div>
-      <div class="rp-stat"><div class="rp-stat-l"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span style="font-size:12px;color:var(--text-2)">Moments</span></div><span class="rp-stat-v">120</span></div>
-      <div class="rp-stat"><div class="rp-stat-l"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg><span style="font-size:12px;color:var(--text-2)">Trophies</span></div><span class="rp-stat-v">50</span></div>
+  <button class="back-btn" id="back-btn" data-i18n="back"></button>
+</section>
+
+<!-- ═══ PLAYERS MODAL ═══ -->
+<div id="pm-overlay" class="pm-overlay" role="dialog" aria-modal="true">
+  <div class="pm-backdrop" id="pm-backdrop"></div>
+  <div class="pm-panel">
+    <div class="pm-header">
+      <div>
+        <span class="pm-title-main" data-i18n="pm_title"></span>
+        <span class="pm-title-sub"  data-i18n="pm_sub"></span>
+      </div>
+      <button class="pm-close" id="pm-close" aria-label="Close">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </div>
-    <div class="rp-div"></div>
-    <div class="ff">
-      <svg width="26" height="26" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#F97316" opacity=".12"/><circle cx="12" cy="12" r="10" stroke="#F97316" stroke-width="1.5" fill="none" opacity=".35"/><path d="M2 12h20M12 2v20" stroke="#F97316" stroke-width="1" opacity=".3"/></svg>
-      <div><div class="ff-head">Fun Fact</div><p class="ff-text" id="ff-text">The youngest MVP in NBA history was just 21 years old.</p></div>
-    </div>
-    <button class="enter-btn" id="enter-btn">Enter Room <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="pm-grid" id="pm-grid"></div>
   </div>
-</aside>
-
-</div><!-- body-wrap -->
-
+</div>
 
 <!-- ═══ SHOE MODAL ═══ -->
-<div id="sm-overlay" class="sm-overlay" role="dialog" aria-modal="true" aria-label="Shoe Lab">
+<div id="sm-overlay" class="sm-overlay" role="dialog" aria-modal="true">
   <div class="sm-backdrop" id="sm-backdrop"></div>
   <div class="sm-panel">
     <div class="sm-header">
       <div>
-        <span class="sm-title-main">SHOE LAB</span>
-        <span class="sm-title-sub">Iconic basketball footwear · Technology meets performance</span>
+        <span class="sm-title-main" data-i18n="sm_title"></span>
+        <span class="sm-title-sub"  data-i18n="sm_sub"></span>
       </div>
       <button class="pm-close" id="sm-close" aria-label="Close">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -609,86 +428,62 @@ aside.rp { width:258px;flex-shrink:0;background:var(--panel-bg);border-left:1px 
     </div>
     <div class="sm-grid">
 
-      <!-- Kobe 6 -->
       <div class="sm-card">
-        <div class="sm-visual" style="background:linear-gradient(135deg,#0A1628,#1E3A5F);height:200px;position:relative">
+        <div style="background:linear-gradient(135deg,#0A1628,#1E3A5F);height:200px;position:relative">
           <canvas id="kobe6-canvas" style="width:100%;height:100%;display:block"></canvas>
-          <div id="kobe6-loading" class="pm-loading"><div class="pm-spinner"></div>Loading…</div>
+          <div id="kobe6-loading" class="pm-loading"><div class="pm-spinner"></div><span data-i18n="loading"></span></div>
         </div>
         <div class="sm-info">
           <div class="sm-shoe-name">Kobe 6</div>
           <div class="sm-shoe-brand" style="color:#3B82F6">Nike · 2010</div>
-          <div class="sm-tags">
-            <span class="sm-tag hl">Low-Top</span>
-            <span class="sm-tag">Flywire</span>
-            <span class="sm-tag">Zoom Air</span>
-            <span class="sm-tag">Lightweight</span>
-          </div>
-          <p class="sm-desc">One of the most iconic Kobe signatures ever made. The Kobe 6 features a low-cut profile inspired by Kobe's desire for maximum ankle freedom, a full-length Zoom Air cushioning unit for explosive responsiveness, and Flywire cables across the upper for a locked-in fit. The herringbone traction pattern provides elite grip on any court surface. Famously worn in Kobe's "Grinch" colorway, which became one of the most coveted shoes in sneaker history.</p>
-          <div class="sm-worn-by">Worn by</div>
+          <div class="sm-tags"><span class="sm-tag hl">Low-Top</span><span class="sm-tag">Flywire</span><span class="sm-tag">Zoom Air</span><span class="sm-tag">Lightweight</span></div>
+          <p class="sm-desc" data-i18n="kobe6_desc"></p>
+          <div class="sm-worn-by" data-i18n="worn_by"></div>
           <div class="sm-worn-list">Kobe Bryant · DeMar DeRozan · Devin Booker</div>
         </div>
       </div>
 
-      <!-- Kobe 5 -->
       <div class="sm-card">
-        <div class="sm-visual" style="background:linear-gradient(135deg,#1A0A00,#3D1200);height:200px;position:relative">
+        <div style="background:linear-gradient(135deg,#1A0A00,#3D1200);height:200px;position:relative">
           <canvas id="kobe5-canvas" style="width:100%;height:100%;display:block"></canvas>
-          <div id="kobe5-loading" class="pm-loading"><div class="pm-spinner"></div>Loading…</div>
+          <div id="kobe5-loading" class="pm-loading"><div class="pm-spinner"></div><span data-i18n="loading"></span></div>
         </div>
         <div class="sm-info">
           <div class="sm-shoe-name">Kobe 5</div>
           <div class="sm-shoe-brand" style="color:#F59E0B">Nike · 2009</div>
-          <div class="sm-tags">
-            <span class="sm-tag hl">Low-Top</span>
-            <span class="sm-tag">Zoom Air</span>
-            <span class="sm-tag">Carbon Fiber</span>
-            <span class="sm-tag">Snake Scale</span>
-          </div>
-          <p class="sm-desc">The shoe that changed basketball footwear forever. The Kobe 5 was the first signature shoe to prove a low-top could protect and perform at the highest level. It features a carbon fiber shank plate for torsional rigidity, a full-length Zoom Air bag for court feel, and an outer sole pattern inspired by mamba snake scales. Kobe wore this shoe through his second three-peat and 2010 championship run. The "Big Stage" and "Chaos" colorways remain grail-level collectibles.</p>
-          <div class="sm-worn-by">Worn by</div>
+          <div class="sm-tags"><span class="sm-tag hl">Low-Top</span><span class="sm-tag">Zoom Air</span><span class="sm-tag">Carbon Fiber</span><span class="sm-tag">Snake Scale</span></div>
+          <p class="sm-desc" data-i18n="kobe5_desc"></p>
+          <div class="sm-worn-by" data-i18n="worn_by"></div>
           <div class="sm-worn-list">Kobe Bryant · Kyrie Irving · PJ Tucker</div>
         </div>
       </div>
 
-      <!-- KD 18 -->
       <div class="sm-card">
-        <div class="sm-visual" style="background:linear-gradient(135deg,#0F2027,#1A3A2A);height:200px;position:relative">
+        <div style="background:linear-gradient(135deg,#0F2027,#1A3A2A);height:200px;position:relative">
           <canvas id="kd18-canvas" style="width:100%;height:100%;display:block"></canvas>
-          <div id="kd18-loading" class="pm-loading"><div class="pm-spinner"></div>Loading…</div>
+          <div id="kd18-loading" class="pm-loading"><div class="pm-spinner"></div><span data-i18n="loading"></span></div>
         </div>
         <div class="sm-info">
           <div class="sm-shoe-name">KD 18</div>
           <div class="sm-shoe-brand" style="color:#10B981">Nike · 2024</div>
-          <div class="sm-tags">
-            <span class="sm-tag hl">Low-Top</span>
-            <span class="sm-tag">Air Zoom</span>
-            <span class="sm-tag">React Foam</span>
-            <span class="sm-tag">Engineered Mesh</span>
-          </div>
-          <p class="sm-desc">The latest in Kevin Durant's long-running signature line, the KD 18 is built for elite versatility. It combines a forefoot Air Zoom unit with a React foam midsole for a cushioned yet responsive ride perfectly suited to Durant's fluid, all-around style of play. The engineered mesh upper provides breathability and structure without excess weight, and the wide toe box accommodates a variety of foot shapes. Designed with input from KD himself to match his evolved game at 35+.</p>
-          <div class="sm-worn-by">Worn by</div>
+          <div class="sm-tags"><span class="sm-tag hl">Low-Top</span><span class="sm-tag">Air Zoom</span><span class="sm-tag">React Foam</span><span class="sm-tag">Engineered Mesh</span></div>
+          <p class="sm-desc" data-i18n="kd18_desc"></p>
+          <div class="sm-worn-by" data-i18n="worn_by"></div>
           <div class="sm-worn-list">Kevin Durant · Shai Gilgeous-Alexander</div>
         </div>
       </div>
 
-      <!-- LeBron 21 -->
       <div class="sm-card">
-        <div class="sm-visual" style="background:linear-gradient(135deg,#1A0010,#3D0020);height:200px;position:relative">
+        <div style="background:linear-gradient(135deg,#1A0010,#3D0020);height:200px;position:relative">
           <canvas id="lebron21-canvas" style="width:100%;height:100%;display:block"></canvas>
-          <div id="lebron21-loading" class="pm-loading"><div class="pm-spinner"></div>Loading…</div>
+          <div id="lebron21-loading" class="pm-loading"><div class="pm-spinner"></div><span data-i18n="loading"></span></div>
         </div>
         <div class="sm-info">
           <div class="sm-shoe-name">LeBron 21</div>
           <div class="sm-shoe-brand" style="color:#EF4444">Nike · 2023</div>
-          <div class="sm-tags">
-            <span class="sm-tag hl">High-Top</span>
-            <span class="sm-tag">Air Max</span>
-            <span class="sm-tag">Zoom Turbo</span>
-            <span class="sm-tag">Cushlon ST</span>
-          </div>
-          <p class="sm-desc">Built for a king entering his 21st NBA season, the LeBron 21 is one of the most cushioned basketball shoes ever made. A massive heel Air Max unit absorbs impact for LeBron's powerful drives to the rim, while a forefoot Zoom Turbo pod provides the pop needed for explosive first steps. The Cushlon ST foam midsole ties everything together for all-day comfort. At 270+ lbs of muscle, LeBron demands maximum support — this shoe delivers it. Available in a wide range of colorways tied to LeBron's Lakers uniform.</p>
-          <div class="sm-worn-by">Worn by</div>
+          <div class="sm-tags"><span class="sm-tag hl">High-Top</span><span class="sm-tag">Air Max</span><span class="sm-tag">Zoom Turbo</span><span class="sm-tag">Cushlon ST</span></div>
+          <p class="sm-desc" data-i18n="lebron21_desc"></p>
+          <div class="sm-worn-by" data-i18n="worn_by"></div>
           <div class="sm-worn-list">LeBron James · Bronny James</div>
         </div>
       </div>
@@ -698,13 +493,13 @@ aside.rp { width:258px;flex-shrink:0;background:var(--panel-bg);border-left:1px 
 </div>
 
 <!-- ═══ COURTS MODAL ═══ -->
-<div id="cm-overlay" class="cm-overlay" role="dialog" aria-modal="true" aria-label="Famous Courts">
+<div id="cm-overlay" class="cm-overlay" role="dialog" aria-modal="true">
   <div class="cm-backdrop" id="cm-backdrop"></div>
   <div class="cm-panel">
     <div class="cm-header">
       <div>
-        <span class="cm-title-main">FAMOUS COURTS</span>
-        <span class="cm-title-sub">The world's most iconic basketball arenas</span>
+        <span class="cm-title-main" data-i18n="cm_title"></span>
+        <span class="cm-title-sub"  data-i18n="cm_sub"></span>
       </div>
       <button class="pm-close" id="cm-close" aria-label="Close">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
@@ -712,93 +507,66 @@ aside.rp { width:258px;flex-shrink:0;background:var(--panel-bg);border-left:1px 
     </div>
     <div class="cm-grid">
 
-      <div class="cm-card" tabindex="0" aria-label="Madison Square Garden">
+      <div class="cm-card" tabindex="0">
         <div class="cm-img-wrap">
-          <img class="cm-img" src="Famous%20Courts/courtmadison.webp" alt="Madison Square Garden basketball court" loading="lazy">
+          <img class="cm-img" src="Famous%20Courts/courtmadison.webp" alt="Madison Square Garden" loading="lazy">
           <div class="cm-img-overlay"></div>
         </div>
         <div class="cm-info">
           <div class="cm-court-name">Madison Square Garden</div>
           <div class="cm-court-meta">
-            <span class="cm-tag hl">New York, NY</span>
-            <span class="cm-tag">NBA · Knicks</span>
-            <span class="cm-tag">Cap. 19,812</span>
-            <span class="cm-tag">Est. 1968</span>
+            <span class="cm-tag hl">New York, NY</span><span class="cm-tag">NBA · Knicks</span>
+            <span class="cm-tag">Cap. 19,812</span><span class="cm-tag">Est. 1968</span>
           </div>
-          <p class="cm-desc">Known as "The World's Most Famous Arena," MSG has hosted some of the greatest moments in basketball history. Home to the New York Knicks since 1968, it sits in the heart of Midtown Manhattan and has seen legends like Willis Reed, Patrick Ewing, and Walt Frazier define an era. Its electric atmosphere makes it one of the most intimidating venues to play in the entire NBA.</p>
+          <p class="cm-desc" data-i18n="court_msg"></p>
         </div>
       </div>
 
-      <div class="cm-card" tabindex="0" aria-label="TD Garden">
+      <div class="cm-card" tabindex="0">
         <div class="cm-img-wrap">
-          <img class="cm-img" src="Famous%20Courts/tdgarden.jpeg" alt="TD Garden basketball court" loading="lazy">
+          <img class="cm-img" src="Famous%20Courts/tdgarden.jpeg" alt="TD Garden" loading="lazy">
           <div class="cm-img-overlay"></div>
         </div>
         <div class="cm-info">
           <div class="cm-court-name">TD Garden</div>
           <div class="cm-court-meta">
-            <span class="cm-tag hl">Boston, MA</span>
-            <span class="cm-tag">NBA · Celtics</span>
-            <span class="cm-tag">Cap. 19,156</span>
-            <span class="cm-tag">Est. 1995</span>
+            <span class="cm-tag hl">Boston, MA</span><span class="cm-tag">NBA · Celtics</span>
+            <span class="cm-tag">Cap. 19,156</span><span class="cm-tag">Est. 1995</span>
           </div>
-          <p class="cm-desc">Home of the Boston Celtics — the most decorated franchise in NBA history with 17 championships — TD Garden carries an unmatched winning tradition. Opened in 1995 on the site of the old Boston Garden, it preserves the legacy of Bill Russell, Larry Bird, and Paul Pierce. The parquet floor is a symbol of Celtic pride, and the crowd is renowned as the loudest and most passionate in the league.</p>
+          <p class="cm-desc" data-i18n="court_tdg"></p>
         </div>
       </div>
 
-      <div class="cm-card" tabindex="0" aria-label="Crypto.com Arena">
+      <div class="cm-card" tabindex="0">
         <div class="cm-img-wrap">
-          <img class="cm-img" src="Famous%20Courts/crypto%20com.jpeg" alt="Crypto.com Arena basketball court" loading="lazy">
+          <img class="cm-img" src="Famous%20Courts/crypto%20com.jpeg" alt="Crypto.com Arena" loading="lazy">
           <div class="cm-img-overlay"></div>
         </div>
         <div class="cm-info">
           <div class="cm-court-name">Crypto.com Arena</div>
           <div class="cm-court-meta">
-            <span class="cm-tag hl">Los Angeles, CA</span>
-            <span class="cm-tag">NBA · Lakers · Clippers</span>
-            <span class="cm-tag">Cap. 19,079</span>
-            <span class="cm-tag">Est. 1999</span>
+            <span class="cm-tag hl">Los Angeles, CA</span><span class="cm-tag">NBA · Lakers · Clippers</span>
+            <span class="cm-tag">Cap. 19,079</span><span class="cm-tag">Est. 1999</span>
           </div>
-          <p class="cm-desc">Crypto.com Arena — formerly the Staples Center — is the crown jewel of Los Angeles sports. Shared by the Lakers and Clippers, it has witnessed Kobe Bryant's 81-point game, four Laker championships, and some of the most memorable playoff runs in NBA history. Situated in downtown LA, it opened in 1999 and quickly became one of the most glamorous and star-studded arenas in professional sports.</p>
+          <p class="cm-desc" data-i18n="court_crypto"></p>
         </div>
       </div>
 
-      <div class="cm-card" tabindex="0" aria-label="United Center">
+      <div class="cm-card" tabindex="0">
         <div class="cm-img-wrap">
-          <img class="cm-img" src="Famous%20Courts/UnitedCenter.jpeg" alt="United Center basketball court" loading="lazy">
+          <img class="cm-img" src="Famous%20Courts/UnitedCenter.jpeg" alt="United Center" loading="lazy">
           <div class="cm-img-overlay"></div>
         </div>
         <div class="cm-info">
           <div class="cm-court-name">United Center</div>
           <div class="cm-court-meta">
-            <span class="cm-tag hl">Chicago, IL</span>
-            <span class="cm-tag">NBA · Bulls</span>
-            <span class="cm-tag">Cap. 20,917</span>
-            <span class="cm-tag">Est. 1994</span>
+            <span class="cm-tag hl">Chicago, IL</span><span class="cm-tag">NBA · Bulls</span>
+            <span class="cm-tag">Cap. 20,917</span><span class="cm-tag">Est. 1994</span>
           </div>
-          <p class="cm-desc">The United Center — nicknamed "The House That Michael Built" — is where Jordan and the Bulls dynasty cemented their legacy with six NBA championships across the 1990s. Opened in 1994, it is the largest arena in the NBA by capacity and stands adjacent to a famous bronze statue of Jordan. It remains one of the most iconic venues in sports, a living monument to the greatest era of Chicago basketball.</p>
+          <p class="cm-desc" data-i18n="court_uc"></p>
         </div>
       </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- ═══ PLAYERS MODAL ═══ -->
-<div id="pm-overlay" class="pm-overlay" role="dialog" aria-modal="true" aria-label="Legends Chamber — Hall of Fame Players">
-  <div class="pm-backdrop" id="pm-backdrop"></div>
-  <div class="pm-panel">
-    <div class="pm-header">
-      <div>
-        <span class="pm-title-main">LEGENDS CHAMBER</span>
-        <span class="pm-title-sub">Hall of Fame · Drag to rotate each player</span>
-      </div>
-      <button class="pm-close" id="pm-close" aria-label="Close">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-    <div class="pm-grid" id="pm-grid">
-      <!-- Cards built by JS -->
     </div>
   </div>
 </div>
@@ -808,192 +576,256 @@ import * as THREE from 'three';
 import { GLTFLoader }    from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-/* ── Player data (files assigned alphabetically by filename) ── */
+/* ══════════════════════════════════════════
+   TRANSLATIONS
+══════════════════════════════════════════ */
+const T = {
+  en: {
+    landing_sub:   "An interactive 3D showcase of the NBA's greatest legends, iconic shoes, and famous courts.",
+    enter_hall:    'Enter the Hall',
+    choose_room:   'Choose a room to explore',
+    open_room:     'Explore',
+    back:          '← Back to Home',
+    legends_name:  'Legends Chamber',
+    legends_desc:  "Interactive 3D models of basketball's greatest players. Drag to rotate.",
+    shoe_name:     'Shoe Lab',
+    shoe_desc:     'Iconic basketball footwear explored in 3D.',
+    courts_name:   'Famous Courts',
+    courts_desc:   "The world's most legendary NBA arenas.",
+    pm_title:      'LEGENDS CHAMBER',
+    pm_sub:        'Hall of Fame · Drag to rotate each player',
+    sm_title:      'SHOE LAB',
+    sm_sub:        'Iconic basketball footwear · Technology meets performance',
+    cm_title:      'FAMOUS COURTS',
+    cm_sub:        "The world's most iconic basketball arenas",
+    loading:       'Loading model…',
+    worn_by:       'Worn by',
+    team_history:  'Team History',
+    kobe6_desc:    "One of the most iconic Kobe signatures ever made. The Kobe 6 features a low-cut profile for maximum ankle freedom, full-length Zoom Air for explosive responsiveness, and Flywire cables for a locked-in fit. Famously worn in the 'Grinch' colorway — one of the most coveted shoes in sneaker history.",
+    kobe5_desc:    "The shoe that changed basketball footwear forever. The Kobe 5 proved a low-top could protect at the highest level. Carbon fiber shank, full-length Zoom Air, and a sole pattern inspired by mamba snake scales. Worn through Kobe's second three-peat and the 2010 championship.",
+    kd18_desc:     "The latest in Kevin Durant's signature line, built for elite versatility. Combines forefoot Air Zoom with React foam for a cushioned yet responsive ride. Engineered mesh provides breathability without extra weight. Designed with KD's direct input.",
+    lebron21_desc: "Built for a king entering his 21st NBA season. A massive heel Air Max unit absorbs impact for LeBron's powerful drives, while a forefoot Zoom Turbo pod delivers explosive pop. Maximum support for 270+ lbs of muscle.",
+    court_msg:     'Known as "The World\'s Most Famous Arena," MSG has hosted the greatest moments in basketball history. Home of the New York Knicks since 1968, legends like Willis Reed, Patrick Ewing, and Walt Frazier defined an era here.',
+    court_tdg:     'Home of the Boston Celtics — the most decorated franchise in NBA history with 17 championships. The parquet floor is a symbol of Celtic pride, and the crowd is renowned as the loudest and most passionate in the league.',
+    court_crypto:  'Crypto.com Arena — formerly the Staples Center — is the crown jewel of LA sports. Home to both the Lakers and Clippers, it witnessed Kobe Bryant\'s 81-point game, four Laker championships, and iconic playoff runs.',
+    court_uc:      '"The House That Michael Built" — where Jordan and the Bulls cemented their legacy with six NBA championships in the 1990s. The largest arena in the NBA by capacity, home to a famous bronze statue of Jordan.',
+  },
+  vn: {
+    landing_sub:   'Triển lãm 3D tương tác về những huyền thoại vĩ đại nhất NBA, đôi giày biểu tượng và các sân đấu nổi tiếng.',
+    enter_hall:    'Vào Đại Sảnh',
+    choose_room:   'Chọn phòng để khám phá',
+    open_room:     'Khám phá',
+    back:          '← Quay lại',
+    legends_name:  'Phòng Huyền Thoại',
+    legends_desc:  'Mô hình 3D tương tác của những cầu thủ bóng rổ vĩ đại nhất. Kéo để xoay.',
+    shoe_name:     'Phòng Thí Nghiệm Giày',
+    shoe_desc:     'Khám phá những đôi giày bóng rổ biểu tượng trong 3D.',
+    courts_name:   'Sân Đấu Nổi Tiếng',
+    courts_desc:   'Những sân vận động NBA huyền thoại nhất thế giới.',
+    pm_title:      'PHÒNG HUYỀN THOẠI',
+    pm_sub:        'Đại Sảnh Danh Vọng · Kéo để xoay mỗi cầu thủ',
+    sm_title:      'PHÒNG THÍ NGHIỆM GIÀY',
+    sm_sub:        'Giày bóng rổ biểu tượng · Công nghệ gặp gỡ hiệu suất',
+    cm_title:      'SÂN ĐẤU NỔI TIẾNG',
+    cm_sub:        'Những sân vận động bóng rổ biểu tượng nhất thế giới',
+    loading:       'Đang tải mô hình…',
+    worn_by:       'Được mang bởi',
+    team_history:  'Lịch sử đội',
+    kobe6_desc:    "Một trong những đôi giày chữ ký Kobe biểu tượng nhất. Kobe 6 có thiết kế cổ thấp cho sự tự do tối đa, đệm Zoom Air toàn chiều dài cho phản hồi vượt trội và dây Flywire ôm chặt. Nổi tiếng nhất với phiên bản màu 'Grinch' — một trong những đôi giày được săn lùng nhất lịch sử.",
+    kobe5_desc:    'Đôi giày thay đổi bóng rổ mãi mãi. Kobe 5 chứng minh cổ thấp có thể bảo vệ ở đẳng cấp cao nhất. Tấm shank carbon fiber, đệm Zoom Air toàn chiều dài và đế lấy cảm hứng từ vảy rắn mamba. Được mang trong ba-peat thứ hai và chức vô địch năm 2010.',
+    kd18_desc:     'Phiên bản mới nhất trong dòng chữ ký của Kevin Durant, xây dựng cho sự linh hoạt tuyệt vời. Kết hợp Air Zoom phía trước và bọt React cho cảm giác êm nhưng phản hồi tốt. Lưới kỹ thuật thoáng khí mà không thêm trọng lượng.',
+    lebron21_desc: 'Được xây dựng cho một vị vua bước vào mùa giải NBA thứ 21. Đệm Air Max gót khổng lồ hấp thụ va đập cho những pha đột phá mạnh mẽ, trong khi Zoom Turbo phía trước cung cấp sức bật tức thì. Hỗ trợ tối đa cho hơn 120kg cơ bắp.',
+    court_msg:     '"Đấu Trường Nổi Tiếng Nhất Thế Giới" — MSG đã chứng kiến những khoảnh khắc bóng rổ vĩ đại nhất lịch sử. Là sân nhà của New York Knicks từ năm 1968, nơi đây từng chứng kiến những huyền thoại như Willis Reed, Patrick Ewing và Walt Frazier.',
+    court_tdg:     'Ngôi nhà của Boston Celtics — đội bóng giàu danh hiệu nhất NBA với 17 chức vô địch. Sàn gỗ parquet là biểu tượng của niềm tự hào Celtic, và khán giả được biết đến là cuồng nhiệt và đam mê nhất giải đấu.',
+    court_crypto:  'Crypto.com Arena — trước đây là Staples Center — là viên ngọc của thể thao LA. Chia sẻ bởi Lakers và Clippers, nơi đây đã chứng kiến trận 81 điểm của Kobe Bryant, bốn chức vô địch Lakers và những chuỗi playoff đáng nhớ nhất NBA.',
+    court_uc:      '"Ngôi Nhà Michael Xây" — nơi Jordan và triều đại Bulls đóng đinh di sản với sáu chức vô địch NBA trong thập niên 90. Sân vận động lớn nhất NBA theo sức chứa, đứng kề bên bức tượng đồng nổi tiếng của Jordan.',
+  }
+};
+
+/* ══════════════════════════════════════════
+   PLAYER DATA  (bilingual)
+══════════════════════════════════════════ */
 const PLAYERS = [
   {
-    name: 'Kobe Bryant',
-    file: 'Players/309bd0b93b75f5339cb8758849c9f499 (1).glb',
-    number: 24, championships: 5, team: 'LA Lakers',
-    accent: '#F59E0B',
-    bio: 'Widely regarded as one of the greatest shooting guards ever, Kobe spent his entire 20-year career with the LA Lakers. Known for his "Mamba Mentality" and relentless work ethic, he won 5 NBA titles, 2 Finals MVPs, and 1 league MVP. An 18× All-Star, he scored 81 points in a single game — second only to Wilt Chamberlain — and retired as the third all-time leading scorer in NBA history.',
+    name: 'Kobe Bryant', file: 'Players/309bd0b93b75f5339cb8758849c9f499 (1).glb',
+    number: 24, championships: 5, accent: '#F59E0B',
+    team:  { en: 'LA Lakers',       vn: 'LA Lakers' },
+    bio: {
+      en: "Widely regarded as one of the greatest shooting guards ever, Kobe spent his entire 20-year career with the LA Lakers. Known for his 'Mamba Mentality,' he won 5 NBA titles, 2 Finals MVPs, and 1 league MVP. An 18× All-Star, he scored 81 points in a single game — second-highest in history.",
+      vn: "Được coi là một trong những hậu vệ ghi điểm vĩ đại nhất, Kobe gắn bó toàn bộ sự nghiệp 20 năm với LA Lakers. Nổi tiếng với tinh thần 'Mamba Mentality', ông giành 5 chức vô địch NBA, 2 giải MVP Finals và 1 MVP mùa giải. 18 lần All-Star, ông ghi 81 điểm trong một trận — kỷ lục thứ hai mọi thời đại."
+    },
     teams: [
-      { name: 'LA Lakers', years: '1996 – 2016', note: 'Drafted 13th overall · 5× Champion' }
+      { name: 'LA Lakers', years: '1996 – 2016',
+        note: { en: 'Drafted 13th overall · 5× Champion', vn: 'Chọn thứ 13 toàn quốc · 5× Vô địch' } }
     ]
   },
   {
-    name: 'LeBron James',
-    file: 'Players/4dd0ad679c20d4343b12b00eb27ad50c.glb',
-    number: 23, championships: 4, team: 'Multiple Teams',
-    accent: '#EF4444',
-    bio: 'Dubbed "The King," LeBron is the NBA\'s all-time leading scorer and one of the most complete players the game has ever seen. Across stints with Cleveland, Miami, and LA he claimed 4 championships, 4 Finals MVPs, and 4 league MVPs. A 20× All-Star, he is the only player to win Finals MVP with three different franchises and remains a dominant force well into his 20th season.',
+    name: 'LeBron James', file: 'Players/4dd0ad679c20d4343b12b00eb27ad50c.glb',
+    number: 23, championships: 4, accent: '#EF4444',
+    team:  { en: 'Multiple Teams',  vn: 'Nhiều đội' },
+    bio: {
+      en: "Dubbed 'The King,' LeBron is the NBA's all-time leading scorer and one of the most complete players ever. Across Cleveland, Miami, and LA he claimed 4 championships, 4 Finals MVPs, and 4 league MVPs. The only player to win Finals MVP with three different franchises.",
+      vn: "Được mệnh danh là 'Nhà Vua', LeBron là cầu thủ ghi điểm nhiều nhất lịch sử NBA. Qua Cleveland, Miami và LA, ông giành 4 chức vô địch, 4 MVP Finals và 4 MVP mùa giải. Cầu thủ duy nhất giành MVP Finals với ba đội khác nhau."
+    },
     teams: [
-      { name: 'Cleveland Cavaliers', years: '2003 – 2010', note: '#1 overall pick · 1 Finals appearance' },
-      { name: 'Miami Heat',          years: '2010 – 2014', note: '2× Champion · 2× Finals MVP' },
-      { name: 'Cleveland Cavaliers', years: '2014 – 2018', note: '1× Champion · "The Return"' },
-      { name: 'LA Lakers',           years: '2018 – present', note: '1× Champion · All-time leading scorer' }
+      { name: 'Cleveland Cavaliers', years: '2003 – 2010', note: { en: '#1 pick · 1 Finals appearance',     vn: 'Số 1 toàn quốc · 1 trận Finals' } },
+      { name: 'Miami Heat',          years: '2010 – 2014', note: { en: '2× Champion · 2× Finals MVP',       vn: '2× Vô địch · 2× MVP Finals' } },
+      { name: 'Cleveland Cavaliers', years: '2014 – 2018', note: { en: '1× Champion · "The Return"',        vn: '1× Vô địch · "Sự trở về"' } },
+      { name: 'LA Lakers',           years: '2018 – present', note: { en: '1× Champion · All-time scorer', vn: '1× Vô địch · Ghi điểm nhiều nhất LS' } }
     ]
   },
   {
-    name: 'Stephen Curry',
-    file: 'Players/50049dd285b5bd240104d55c763de853 (1).glb',
-    number: 30, championships: 4, team: 'Golden State',
-    accent: '#3B82F6',
-    bio: 'Steph Curry revolutionized basketball by making the deep three-pointer a primary weapon. The unanimous 2016 MVP led the Golden State Warriors to 4 titles and shattered the single-season three-point record multiple times. A 10× All-Star and 2× scoring champion, he is the greatest shooter in NBA history and changed how every team in the league approaches offense.',
+    name: 'Stephen Curry', file: 'Players/50049dd285b5bd240104d55c763de853 (1).glb',
+    number: 30, championships: 4, accent: '#3B82F6',
+    team:  { en: 'Golden State',    vn: 'Golden State' },
+    bio: {
+      en: "Steph Curry revolutionized basketball by making the deep three-pointer a primary weapon. The unanimous 2016 MVP led Golden State to 4 championships and shattered the single-season three-point record multiple times. The greatest shooter in NBA history.",
+      vn: "Steph Curry cách mạng hóa bóng rổ bằng cách biến cú ném ba điểm từ xa thành vũ khí chủ lực. MVP nhất trí năm 2016, ông dẫn dắt Golden State giành 4 chức vô địch và phá vỡ kỷ lục ném ba trong một mùa giải nhiều lần. Xạ thủ vĩ đại nhất lịch sử NBA."
+    },
     teams: [
-      { name: 'Golden State Warriors', years: '2009 – present', note: '4× Champion · 2× MVP · All-time 3PT leader' }
+      { name: 'Golden State Warriors', years: '2009 – present',
+        note: { en: '4× Champion · 2× MVP · All-time 3PT leader', vn: '4× Vô địch · 2× MVP · Kỷ lục ném ba' } }
     ]
   },
   {
-    name: 'Michael Jordan',
-    file: 'Players/86701e50b27c703f6d9c3e47f5fcf91a.glb',
-    number: 23, championships: 6, team: 'Chicago Bulls',
-    accent: '#C2410C',
-    bio: 'Michael Jordan is the benchmark by which all basketball greatness is measured. He led the Chicago Bulls to 6 championships with a perfect 6-0 Finals record, earning MVP every time. A 5× league MVP, 14× All-Star, and 10× scoring champion, his combination of athleticism, skill, and competitive fire set a standard that has never been surpassed. He is universally considered the greatest player of all time.',
+    name: 'Michael Jordan', file: 'Players/86701e50b27c703f6d9c3e47f5fcf91a.glb',
+    number: 23, championships: 6, accent: '#C2410C',
+    team:  { en: 'Chicago Bulls',   vn: 'Chicago Bulls' },
+    bio: {
+      en: "Michael Jordan is the benchmark of basketball greatness. He led the Chicago Bulls to 6 championships with a perfect 6-0 Finals record, winning MVP every time. 5× league MVP, 14× All-Star, 10× scoring champion — universally considered the greatest of all time.",
+      vn: "Michael Jordan là thước đo của mọi sự vĩ đại trong bóng rổ. Ông dẫn dắt Chicago Bulls giành 6 chức vô địch với tỷ số toàn thắng 6-0 ở Finals. 5× MVP mùa giải, 14× All-Star, 10× vô địch ghi điểm — cầu thủ vĩ đại nhất mọi thời đại."
+    },
     teams: [
-      { name: 'Chicago Bulls',       years: '1984 – 1993', note: '3× Champion · 1st "three-peat"' },
-      { name: 'Chicago Bulls',       years: '1995 – 1998', note: '3× Champion · 2nd "three-peat"' },
-      { name: 'Washington Wizards',  years: '2001 – 2003', note: 'Came out of retirement to mentor' }
+      { name: 'Chicago Bulls',      years: '1984 – 1993', note: { en: '3× Champion · 1st three-peat',              vn: '3× Vô địch · Ba-peat lần 1' } },
+      { name: 'Chicago Bulls',      years: '1995 – 1998', note: { en: '3× Champion · 2nd three-peat',              vn: '3× Vô địch · Ba-peat lần 2' } },
+      { name: 'Washington Wizards', years: '2001 – 2003', note: { en: 'Returned from retirement to mentor',        vn: 'Ra sân trở lại để truyền đạt' } }
     ]
   },
 ];
 
-/* ── Encode file path preserving slashes ── */
+/* ══════════════════════════════════════════
+   i18n
+══════════════════════════════════════════ */
+let currentLang = 'en';
+
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'vn' ? 'vi' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[lang][el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll('.lang-opt').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  if (viewersReady) updatePlayerText();
+}
+
+function updatePlayerText() {
+  document.querySelectorAll('#pm-grid .pm-card').forEach((card, i) => {
+    const p = PLAYERS[i]; if (!p) return;
+    const bio = card.querySelector('.pm-bio');
+    if (bio) bio.textContent = p.bio[currentLang];
+    const badges = card.querySelectorAll('.pm-badge');
+    if (badges[1]) badges[1].textContent = `${p.championships}× ${currentLang === 'vn' ? 'Vô địch' : 'Champion'}`;
+    if (badges[2]) badges[2].textContent = p.team[currentLang];
+    const th = card.querySelector('.pm-teams-title');
+    if (th) th.textContent = T[currentLang].team_history;
+    card.querySelectorAll('.pm-team-note').forEach((el, j) => {
+      if (p.teams[j]) el.textContent = p.teams[j].note[currentLang];
+    });
+  });
+}
+
+/* ══════════════════════════════════════════
+   THREE.JS UTILITIES
+══════════════════════════════════════════ */
 function encodePath(p) {
   return p.split('/').map(seg => encodeURIComponent(seg)).join('/');
 }
 
-/* ── Build one Three.js viewer per canvas ── */
 function createViewer(canvas, accentHex) {
   const wrap = canvas.parentElement;
-  const w = wrap.clientWidth  || 240;
-  const h = wrap.clientHeight || 300;
-
+  const w = wrap.clientWidth || 240, h = wrap.clientHeight || 300;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setSize(w, h);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
   renderer.setClearColor(0x121E2D, 1);
-
   const scene  = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, w / h, 0.01, 200);
   camera.position.set(0, 1.2, 3.5);
-
-  /* Lighting */
   scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-  const key = new THREE.DirectionalLight(0xffffff, 1.6);
-  key.position.set(3, 5, 4); scene.add(key);
-  const fill = new THREE.DirectionalLight(0xaac4ff, 0.45);
-  fill.position.set(-3, 2, -2); scene.add(fill);
-  const accent = new THREE.PointLight(new THREE.Color(accentHex), 1.2, 8);
-  accent.position.set(0, 0.5, 2); scene.add(accent);
-
-  /* Controls */
+  const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(3, 5, 4); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xaac4ff, 0.45); fill.position.set(-3, 2, -2); scene.add(fill);
+  const acc = new THREE.PointLight(new THREE.Color(accentHex), 1.2, 8); acc.position.set(0, 0.5, 2); scene.add(acc);
   const controls = new OrbitControls(camera, canvas);
-  controls.enablePan    = false;
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.06;
-  controls.autoRotate   = true;
-  controls.autoRotateSpeed = 1.2;
-  controls.minDistance  = 0.5;
-  controls.maxDistance  = 12;
-
-  /* Animation loop */
-  let animId;
-  function tick() {
-    animId = requestAnimationFrame(tick);
-    controls.update();
-    renderer.render(scene, camera);
-  }
-  tick();
-
-  return { renderer, scene, camera, controls, animId };
+  controls.enablePan = false; controls.enableDamping = true; controls.dampingFactor = 0.06;
+  controls.autoRotate = true; controls.autoRotateSpeed = 1.2;
+  controls.minDistance = 0.5; controls.maxDistance = 12;
+  (function tick() { requestAnimationFrame(tick); controls.update(); renderer.render(scene, camera); })();
+  return { renderer, scene, camera, controls };
 }
 
-/* ── Load a GLB into an existing viewer ── */
 function loadModel(viewer, filePath, loadingEl) {
-  const loader = new GLTFLoader();
-  loader.load(
-    encodePath(filePath),
-    (gltf) => {
-      const model = gltf.scene;
-
-      /* Center + fit */
-      const box    = new THREE.Box3().setFromObject(model);
-      const center = box.getCenter(new THREE.Vector3());
-      const size   = box.getSize(new THREE.Vector3());
-      const maxDim = Math.max(size.x, size.y, size.z);
-
-      model.position.sub(center);
-
-      const fovRad  = viewer.camera.fov * (Math.PI / 180);
-      const fitDist = (maxDim / 2) / Math.tan(fovRad / 2) * 1.4;
-      viewer.camera.position.set(0, size.y * 0.05, fitDist);
-      viewer.controls.target.set(0, 0, 0);
-      viewer.controls.update();
-
-      viewer.scene.add(model);
-      loadingEl.classList.add('done');
-    },
-    undefined,
-    (err) => {
-      console.error('GLB load error:', filePath, err);
-      loadingEl.innerHTML = '<span style="color:#EF4444;font-size:11px">Failed to load</span>';
-    }
-  );
+  new GLTFLoader().load(encodePath(filePath), (gltf) => {
+    const model = gltf.scene;
+    const box = new THREE.Box3().setFromObject(model);
+    const center = box.getCenter(new THREE.Vector3());
+    const size   = box.getSize(new THREE.Vector3());
+    model.position.sub(center);
+    const fovRad  = viewer.camera.fov * (Math.PI / 180);
+    const fitDist = (Math.max(size.x, size.y, size.z) / 2) / Math.tan(fovRad / 2) * 1.4;
+    viewer.camera.position.set(0, size.y * 0.05, fitDist);
+    viewer.controls.target.set(0, 0, 0); viewer.controls.update();
+    viewer.scene.add(model);
+    loadingEl.classList.add('done');
+  }, undefined, (err) => {
+    console.error('GLB load error:', filePath, err);
+    loadingEl.innerHTML = '<span style="color:#EF4444;font-size:11px">Failed to load</span>';
+  });
 }
 
-/* ── Build the modal cards + viewers (once) ── */
+/* ══════════════════════════════════════════
+   PLAYER MODAL
+══════════════════════════════════════════ */
 let viewersReady = false;
 const viewers = [];
 
 function buildModal() {
   if (viewersReady) return;
   viewersReady = true;
-
   const grid = document.getElementById('pm-grid');
-
-  PLAYERS.forEach((p) => {
+  PLAYERS.forEach(p => {
     const card = document.createElement('div');
-    card.className = 'pm-card';
-    card.setAttribute('tabindex', '0');
+    card.className = 'pm-card'; card.tabIndex = 0;
     card.innerHTML = `
       <div class="pm-canvas-wrap">
         <canvas class="pm-canvas"></canvas>
-        <div class="pm-loading">
-          <div class="pm-spinner"></div>
-          Loading model…
-        </div>
+        <div class="pm-loading"><div class="pm-spinner"></div><span>${T[currentLang].loading}</span></div>
       </div>
       <div class="pm-info">
         <div class="pm-player-name">${p.name}</div>
         <div class="pm-player-meta">
           <span class="pm-badge highlight">#${p.number}</span>
-          <span class="pm-badge">${p.championships}× Champion</span>
-          <span class="pm-badge">${p.team}</span>
+          <span class="pm-badge">${p.championships}× ${currentLang === 'vn' ? 'Vô địch' : 'Champion'}</span>
+          <span class="pm-badge">${p.team[currentLang]}</span>
         </div>
-        <p class="pm-bio">${p.bio}</p>
-        <div class="pm-teams-title">Team History</div>
-        <div>
-          ${p.teams.map(t => `
-            <div class="pm-team-row">
-              <div>
-                <div class="pm-team-name">${t.name}</div>
-                <div class="pm-team-note">${t.note}</div>
-              </div>
-              <div class="pm-team-years">${t.years}</div>
-            </div>
-          `).join('')}
+        <p class="pm-bio">${p.bio[currentLang]}</p>
+        <div class="pm-teams-title">${T[currentLang].team_history}</div>
+        <div>${p.teams.map(t => `
+          <div class="pm-team-row">
+            <div><div class="pm-team-name">${t.name}</div><div class="pm-team-note">${t.note[currentLang]}</div></div>
+            <div class="pm-team-years">${t.years}</div>
+          </div>`).join('')}
         </div>
-      </div>
-    `;
+      </div>`;
     grid.appendChild(card);
   });
-
-  /* Init viewers after DOM paint so canvas sizes are settled */
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    const canvases  = grid.querySelectorAll('.pm-canvas');
-    const loadings  = grid.querySelectorAll('.pm-loading');
+    const canvases = grid.querySelectorAll('.pm-canvas');
+    const loadings = grid.querySelectorAll('.pm-loading');
     canvases.forEach((canvas, i) => {
       const v = createViewer(canvas, PLAYERS[i].accent);
       viewers.push(v);
@@ -1002,121 +834,71 @@ function buildModal() {
   }));
 }
 
-/* ── Open / close ── */
-const overlay = document.getElementById('pm-overlay');
-
-function openModal() {
-  buildModal();
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('pm-close').focus();
-  /* resume auto-rotate */
-  viewers.forEach(v => { v.controls.autoRotate = true; });
-}
-
-function closeModal() {
-  overlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
+const pmOverlay = document.getElementById('pm-overlay');
+function openModal()  { buildModal(); pmOverlay.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('pm-close').focus(); }
+function closeModal() { pmOverlay.classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('pm-close').addEventListener('click', closeModal);
 document.getElementById('pm-backdrop').addEventListener('click', closeModal);
 
-/* ── Shoe modal ── */
-const shoeOverlay = document.getElementById('sm-overlay');
-function openShoeModal() {
-  shoeOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('sm-close').focus();
-}
-function closeShoeModal() {
-  shoeOverlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
+/* ══════════════════════════════════════════
+   SHOE MODAL
+══════════════════════════════════════════ */
+const smOverlay = document.getElementById('sm-overlay');
+function openShoeModalBase()  { smOverlay.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('sm-close').focus(); }
+function closeShoeModal() { smOverlay.classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('sm-close').addEventListener('click', closeShoeModal);
 document.getElementById('sm-backdrop').addEventListener('click', closeShoeModal);
 
-
 function makeShoeViewer(canvasId, loadingId, file, bgHex, accentHex) {
-  const canvas  = document.getElementById(canvasId);
+  const canvas = document.getElementById(canvasId);
   const loading = document.getElementById(loadingId);
-  const wrap    = canvas.parentElement;
-  const w = wrap.clientWidth  || 240;
-  const h = wrap.clientHeight || 200;
-
+  const wrap = canvas.parentElement;
+  const w = wrap.clientWidth || 240, h = wrap.clientHeight || 200;
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setSize(w, h);
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.2;
+  renderer.setSize(w, h); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.2;
   renderer.setClearColor(new THREE.Color(bgHex), 1);
-
-  const scene  = new THREE.Scene();
+  const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, w / h, 0.01, 200);
   camera.position.set(0, 0.5, 3);
-
   scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-  const key = new THREE.DirectionalLight(0xffffff, 1.8);
-  key.position.set(3, 4, 3); scene.add(key);
-  const fill = new THREE.DirectionalLight(0xaac4ff, 0.4);
-  fill.position.set(-3, 1, -2); scene.add(fill);
-  scene.add(Object.assign(new THREE.PointLight(new THREE.Color(accentHex), 1.0, 8), { position: new THREE.Vector3(0, 1, 2) }));
-
+  const key = new THREE.DirectionalLight(0xffffff, 1.8); key.position.set(3, 4, 3); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xaac4ff, 0.4); fill.position.set(-3, 1, -2); scene.add(fill);
+  scene.add(Object.assign(new THREE.PointLight(new THREE.Color(accentHex), 1.0, 8), { position: new THREE.Vector3(0,1,2) }));
   const controls = new OrbitControls(camera, canvas);
-  controls.enablePan = false;
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.06;
-  controls.autoRotate = true;
-  controls.autoRotateSpeed = 1.5;
-  controls.minDistance = 0.5;
-  controls.maxDistance = 10;
-
-  new GLTFLoader().load(
-    file,
-    (gltf) => {
-      const model = gltf.scene;
-      const box   = new THREE.Box3().setFromObject(model);
-      const center = box.getCenter(new THREE.Vector3());
-      const size   = box.getSize(new THREE.Vector3());
-      model.position.sub(center);
-      const fovRad = camera.fov * (Math.PI / 180);
-      camera.position.set(0, size.y * 0.1, (Math.max(size.x, size.y, size.z) / 2) / Math.tan(fovRad / 2) * 1.4);
-      controls.update();
-      scene.add(model);
-      loading.classList.add('done');
-    },
-    undefined,
-    (err) => { console.error(file, err); loading.innerHTML = '<span style="color:#EF4444;font-size:11px">Failed to load</span>'; }
-  );
-  (function tick() { requestAnimationFrame(tick); controls.update(); renderer.render(scene, camera); })();
+  controls.enablePan=false; controls.enableDamping=true; controls.dampingFactor=0.06;
+  controls.autoRotate=true; controls.autoRotateSpeed=1.5;
+  controls.minDistance=0.5; controls.maxDistance=10;
+  new GLTFLoader().load(file, (gltf) => {
+    const model = gltf.scene;
+    const box = new THREE.Box3().setFromObject(model);
+    const center = box.getCenter(new THREE.Vector3()), size = box.getSize(new THREE.Vector3());
+    model.position.sub(center);
+    const fovRad = camera.fov * (Math.PI/180);
+    camera.position.set(0, size.y*0.1, (Math.max(size.x,size.y,size.z)/2)/Math.tan(fovRad/2)*1.4);
+    controls.update(); scene.add(model); loading.classList.add('done');
+  }, undefined, (err) => { loading.innerHTML='<span style="color:#EF4444;font-size:11px">Failed to load</span>'; });
+  (function tick() { requestAnimationFrame(tick); controls.update(); renderer.render(scene,camera); })();
 }
 
 let shoeViewersReady = false;
-const _origOpenShoe = openShoeModal;
-openShoeModal = function() {
-  _origOpenShoe();
+function openShoeModal() {
+  openShoeModalBase();
   requestAnimationFrame(() => {
-    if (shoeViewersReady) return;
-    shoeViewersReady = true;
-    makeShoeViewer('kobe6-canvas',   'kobe6-loading',   'Shoes/Kobe%206.glb',    '#0A1628', '#3B82F6');
-    makeShoeViewer('kobe5-canvas',   'kobe5-loading',   'Shoes/Kobe%205.glb',    '#1A0A00', '#F59E0B');
-    makeShoeViewer('kd18-canvas',    'kd18-loading',    'Shoes/KD%2018.glb',     '#0F2027', '#10B981');
-    makeShoeViewer('lebron21-canvas','lebron21-loading', 'Shoes/Lebron%2021.glb', '#1A0010', '#EF4444');
+    if (shoeViewersReady) return; shoeViewersReady = true;
+    makeShoeViewer('kobe6-canvas',    'kobe6-loading',    'Shoes/Kobe%206.glb',    '#0A1628', '#3B82F6');
+    makeShoeViewer('kobe5-canvas',    'kobe5-loading',    'Shoes/Kobe%205.glb',    '#1A0A00', '#F59E0B');
+    makeShoeViewer('kd18-canvas',     'kd18-loading',     'Shoes/KD%2018.glb',     '#0F2027', '#10B981');
+    makeShoeViewer('lebron21-canvas', 'lebron21-loading',  'Shoes/Lebron%2021.glb', '#1A0010', '#EF4444');
   });
-};
-
-/* ── Courts modal ── */
-const courtsOverlay = document.getElementById('cm-overlay');
-
-function openCourtsModal() {
-  courtsOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('cm-close').focus();
 }
-function closeCourtsModal() {
-  courtsOverlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
+
+/* ══════════════════════════════════════════
+   COURTS MODAL
+══════════════════════════════════════════ */
+const cmOverlay = document.getElementById('cm-overlay');
+function openCourtsModal()  { cmOverlay.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('cm-close').focus(); }
+function closeCourtsModal() { cmOverlay.classList.remove('open'); document.body.style.overflow=''; }
 document.getElementById('cm-close').addEventListener('click', closeCourtsModal);
 document.getElementById('cm-backdrop').addEventListener('click', closeCourtsModal);
 
@@ -1124,80 +906,40 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); closeCourtsModal(); closeShoeModal(); }
 });
 
-/* ── Room selection (sidebar + portals) ── */
-const ROOMS = {
-  legends: {
-    name: 'LEGENDS<br>CHAMBER', color: '#F59E0B',
-    desc: "Step into the hall of fame. Discover the stories, stats, and iconic moments of basketball's greatest legends.",
-    stats: [{i:'person',l:'Players',v:'25'},{i:'clock',l:'Moments',v:'120'},{i:'trophy',l:'Trophies',v:'50'}],
-    fact: 'The youngest MVP in NBA history was just 21 years old.'
-  },
-  shoe: {
-    name: 'SHOE<br>LAB', color: '#10B981',
-    desc: "Explore the evolution of basketball footwear — from the first canvas sneakers to today's high-tech gear.",
-    stats: [{i:'person',l:'Shoes',v:'48'},{i:'clock',l:'Collections',v:'12'},{i:'trophy',l:'Brands',v:'6'}],
-    fact: 'The first basketball shoe was made from canvas and rubber in 1917.'
-  },
-  courts: {
-    name: 'FAMOUS<br>COURTS', color: '#3B82F6',
-    desc: "Travel the world's most iconic basketball courts — from MSG to legendary outdoor arenas.",
-    stats: [{i:'person',l:'Courts',v:'30'},{i:'clock',l:'Continents',v:'6'},{i:'trophy',l:'Countries',v:'15'}],
-    fact: 'The Boston Garden parquet floor is made from over 200 pieces of maple wood.'
-  }
-};
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+const landing = document.getElementById('landing');
+const hall    = document.getElementById('hall');
 
-const ICONS = {
-  person: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>`,
-  clock:  `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-  trophy: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
-  lock:   `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-2)" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`
-};
+document.getElementById('enter-hall-btn').addEventListener('click', () => {
+  landing.style.display = 'none';
+  hall.style.display    = 'flex';
+});
+document.getElementById('back-btn').addEventListener('click', () => {
+  hall.style.display    = 'none';
+  landing.style.display = 'flex';
+});
 
-function selectRoom(id) {
-  const r = ROOMS[id]; if (!r) return;
-
-  /* update sidebar */
-  document.querySelectorAll('.r-btn').forEach(b =>
-    b.setAttribute('aria-pressed', b.dataset.room === id ? 'true' : 'false')
-  );
-  /* update portals */
-  document.querySelectorAll('.portal').forEach(p => {
-    const s = p.dataset.room === id;
-    p.classList.toggle('sel', s);
-    p.setAttribute('aria-pressed', s ? 'true' : 'false');
-  });
-  /* update right panel */
-  document.getElementById('rp-name').innerHTML = r.name;
-  document.getElementById('rp-name').style.color = r.color;
-  document.getElementById('rp-desc').textContent = r.desc;
-  document.getElementById('ff-text').textContent = r.fact;
-  document.getElementById('rp-stats').innerHTML = r.stats.map(s => `
-    <div class="rp-stat">
-      <div class="rp-stat-l">${ICONS[s.i]}<span style="font-size:12px;color:var(--text-2)">${s.l}</span></div>
-      <span class="rp-stat-v">${s.v}</span>
-    </div>`).join('');
-
-  /* open room-specific modals */
-  if (id === 'legends') openModal();
-  if (id === 'courts')  openCourtsModal();
-  if (id === 'shoe')    openShoeModal();
-}
-
-/* Wire clicks — portals + sidebar */
-document.querySelectorAll('[data-room]').forEach(el => {
-  el.addEventListener('click', () => selectRoom(el.dataset.room));
-  el.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectRoom(el.dataset.room); }
+document.querySelectorAll('.hall-card').forEach(card => {
+  card.addEventListener('click', () => {
+    if (card.dataset.room === 'legends') openModal();
+    if (card.dataset.room === 'shoe')    openShoeModal();
+    if (card.dataset.room === 'courts')  openCourtsModal();
   });
 });
 
-/* Enter Room button also opens modal when legends is active */
-document.getElementById('enter-btn').addEventListener('click', () => {
-  const active = document.querySelector('.r-btn[aria-pressed="true"]');
-  if (active?.dataset.room === 'legends') openModal();
-  if (active?.dataset.room === 'courts')  openCourtsModal();
-  if (active?.dataset.room === 'shoe')    openShoeModal();
+/* ══════════════════════════════════════════
+   LANGUAGE TOGGLE
+══════════════════════════════════════════ */
+document.querySelectorAll('.lang-opt').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
 });
+
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
+applyLang('en');
 </script>
 </body>
 </html>
